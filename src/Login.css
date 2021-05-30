@@ -33,7 +33,10 @@
       0 12px 12px rgba(128, 128, 128, 0.35);
   }
     
-  
+  .error{
+    color:red;
+    font-weight:600;
+  }
   
   .row input {
     flex: 1;
@@ -50,7 +53,7 @@
   }
   
   .row input::placeholder {
-    color: #a8a8af;
+    color: #58585a;
   }
   
   .buttons {

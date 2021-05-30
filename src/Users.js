@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 
 const Users = () => {
+ 
   const [user, setUser] = useState([])
 
   const getUsers = async () => {
@@ -12,7 +14,11 @@ const Users = () => {
 
   useEffect(() => {
     getUsers()
+   
   }, [])
+  // if (!authorized) {
+  //   return <Redirect to="/" />
+  // }
 
   return (
     <>
@@ -30,7 +36,7 @@ const Users = () => {
                     <div class="card-body">Email:{usrElement.email}</div>
                     <div class="card-footer">Phone:{usrElement.phone}</div>
                     <Link to={'/userdetails/' + usrElement.id}>
-                      <button className="btn btn-danger">View details</button>{' '}
+                      <button className="btn btn-info">View details</button>{' '}
                     </Link>
                   </div>
                   <br />

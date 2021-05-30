@@ -1,45 +1,57 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
 
-import { BrowserRouter as router, Route, NavLink } from 'react-router-dom'
 
 import './Login.css'
 
-const Login = () => {
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
+const Login = ({ Logins, error }) => {
+  const [details, setDetails] = useState({ username: '', password: '' })
 
   const onSubmit = (e) => {
     e.preventDefault()
 
-     }
+    if (!details.username) {
+      alert('please enter username ')
+      return
+    }
+    if (!details.password) {
+      alert('Please enter password ')
+      return
+    }
+    Logins(details)
+  }
 
   return (
     <div className="outerContainerJoin allhead">
       <h1 className="heading">Join Now!</h1>
       <form onSubmit={onSubmit}>
+        {error != '' ? <div className="error">{error}</div> : ''}
         <div class="row">
           <input
-            placeholder="Name"
+            placeholder="username"
             className=""
             type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            value={details.username}
+            onChange={(e) =>
+              setDetails({ ...details, username: e.target.value })
+            }
           />
         </div>
+        <br />
         <div class="row">
           <input
-            placeholder="Room"
+            placeholder="Password"
             className=""
             type="text"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            value={details.password}
+            onChange={(e) =>
+              setDetails({ ...details, password: e.target.value })
+            }
           />
         </div>
-       
-         <Link to="/users"> <button className="buttons" type="submit">
-            Sign In
-          </button></Link>
+
+        <button className="buttons" type="submit">
+          LOGIN
+        </button>
       </form>
     </div>
   )
